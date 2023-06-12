@@ -6,6 +6,7 @@ import org.example.model.Demo;
 import org.example.model.req.DemoReq;
 import org.example.service.Impl.DemoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/demo")
+@Validated
 public class DemoController {
     @Autowired
     private DemoServiceImpl demoService;
@@ -23,7 +25,7 @@ public class DemoController {
         return new BaseResponse<>(all);
     }
     @PostMapping("")
-    public BaseResponse<Integer> create(@Valid @RequestBody  DemoReq demoReq) {
+    public BaseResponse<Integer> create(@RequestBody @Valid  DemoReq demoReq) {
         Demo demo = new Demo();
         demo.setText(demoReq.text);
         int t = demoService.create(demo);

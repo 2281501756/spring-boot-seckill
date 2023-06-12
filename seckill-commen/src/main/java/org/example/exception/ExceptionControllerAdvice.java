@@ -10,26 +10,30 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@ControllerAdvice
+@RestControllerAdvice
 @Slf4j
 public class ExceptionControllerAdvice {
+
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public BaseResponse<Object> handlerArgumentNotValidException(MethodArgumentNotValidException
+                                                                         exception) {
+        return handlerNotValidException(exception);
+    }
+
 
     @ExceptionHandler(BindException.class)
     public BaseResponse<Object> handlerBindException(BindException exception) {
         return handlerNotValidException(exception);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public BaseResponse<Object> handlerArgumentNotValidException(MethodArgumentNotValidException
-                                                                 exception) {
-        return handlerNotValidException(exception);
-    }
 
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.OK)
@@ -62,7 +66,7 @@ public class ExceptionControllerAdvice {
         }
 
         //此处的错误码应该定义各枚举类，错误码都在枚举文件中，方便后续统一处理，此处只是演示，就忽略了
-        return BaseResponse.error(305, "参数错误", maps);
+        return BaseResponse.error(400, "参数错误", maps);
 
     }
 }
