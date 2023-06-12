@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.mapper.UserMapper">
+    <resultMap id="User" type="org.example.model.SeckillUser" >
+        <result column="name" property="name"/>
+        <result column="phone" property="phone"/>
+        <result column="create_time" property="createTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+    </resultMap>
+    <select id="SelectByPhone" resultMap="User" parameterType="java.lang.String">
+        select  * from seckill_user where phone = #{phone}
+    </select>
+</mapper>
