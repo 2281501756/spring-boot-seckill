@@ -22,14 +22,14 @@ public class BaseResponse<T> implements Serializable {
     }
 
     public static BaseResponse<Object> ok(Object o) {
-        return new BaseResponse<Object>(0, "成功", o);
+        return new BaseResponse<Object>(200, "成功", o);
     }
 
     public static <T> BaseResponse<T> OK(T t) {
-        return new BaseResponse<T>(0, "成功", t);
+        return new BaseResponse<T>(200, "成功", t);
     }
     public static <T> BaseResponse<T> OK(String message, T t) {
-        return new BaseResponse<T>(0, message, t);
+        return new BaseResponse<T>(200, message, t);
     }
 
     public static BaseResponse<String> error(ErrorMessage errorMessage) {

@@ -14,4 +14,10 @@ public class UserReq implements Serializable {
         @Size(min = 10, max = 12)
         private String phone;
     }
+    @Data
+    public static class LoginReq extends PhoneSmsReq implements Serializable {
+        @NotNull(message = "验证码不能为空")
+        @NotEmpty(message = "必须传入验证码")
+        private String code;
+    }
 }
