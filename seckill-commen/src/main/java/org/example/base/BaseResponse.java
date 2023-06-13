@@ -21,8 +21,8 @@ public class BaseResponse<T> implements Serializable {
         this.data = data;
     }
 
-    public static BaseResponse<Object> ok(Object o) {
-        return new BaseResponse<Object>(200, "成功", o);
+    public static <T>BaseResponse<T> ok(T t) {
+        return new BaseResponse<T>(200, "成功", t);
     }
 
     public static <T> BaseResponse<T> OK(T t) {

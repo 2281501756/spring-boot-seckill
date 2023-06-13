@@ -24,6 +24,9 @@ public class WebUserUtil {
             String token = request.getHeader("token");
             RedisTemplate redisTemplate =  SpringbootContextHolder.getBean("redisTemplate");
             Object obj =  redisTemplate.opsForValue().get(token);
+            if(obj == null) {
+                return null;
+            }
             SeckillUser user = JSONObject.parseObject(obj.toString(), SeckillUser.class);
             session.setAttribute(SESSION_KEY, user);
             return user;
