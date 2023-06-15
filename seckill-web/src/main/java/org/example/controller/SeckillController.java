@@ -25,4 +25,34 @@ public class SeckillController {
         }
         return seckillService.simpleSeckill(simpleSeckill, loginUser);
     }
+
+    @PostMapping("/pessimistic")
+    public BaseResponse<String> pessimistic(@RequestBody @Valid SeckillReq.SimpleSeckillReq simpleSeckill) {
+        SeckillUser loginUser = WebUserUtil.getLoginUser();
+        if(loginUser == null) {
+            return BaseResponse.error("登录失败", "秒杀失败");
+        }
+        BaseResponse<String> stringBaseResponse = null;
+        try {
+            stringBaseResponse = seckillService.pessimisticSeckill(simpleSeckill, loginUser);
+        } catch (Exception e) {
+            return BaseResponse.error("售出过量", "售出过量");
+        }
+        return stringBaseResponse;
+    }
+    @PostMapping("/optimistic")
+    public BaseResponse<String> optimistic(@RequestBody @Valid SeckillReq.SimpleSeckillReq simpleSeckill) {
+        SeckillUser loginUser = WebUserUtil.getLoginUser();
+        if(loginUser == null) {
+            return BaseResponse.error("登录失败", "秒杀失败");
+        }
+        BaseResponse<String> stringBaseResponse = null;
+        try {
+            stringBaseResponse = seckillService.pessimisticSeckill(simpleSeckill, loginUser);
+        } catch (Exception e) {
+            return BaseResponse.error("售出过量", "售出过量");
+        }
+        return stringBaseResponse;
+    }
+
 }

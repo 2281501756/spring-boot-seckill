@@ -6,4 +6,8 @@ import org.example.model.req.SeckillReq;
 
 public interface SeckillService {
     BaseResponse<String> simpleSeckill(SeckillReq.SimpleSeckillReq simpleSeckill, SeckillUser user);
+    BaseResponse<String> pessimisticSeckill(SeckillReq.SimpleSeckillReq simpleSeckill, SeckillUser user);
+    BaseResponse<String> optimisticSeckill(SeckillReq.SimpleSeckillReq simpleSeckill, SeckillUser user) throws Exception;
+
+
 }

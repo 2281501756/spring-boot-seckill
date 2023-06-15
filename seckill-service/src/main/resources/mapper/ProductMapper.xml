@@ -16,5 +16,7 @@
         <result column="memo" property="memo"/>
         <result column="product_period_key" property="productPeriodKey"/>
     </resultMap>
-
+    <select id="selectByIdForUpdate" resultMap="SeckillProducts" parameterType="java.lang.Long">
+        select * from seckill_products where id = #{id} for update
+    </select>
 </mapper>
