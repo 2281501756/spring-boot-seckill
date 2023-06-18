@@ -19,4 +19,8 @@
     <select id="selectByIdForUpdate" resultMap="SeckillProducts" parameterType="java.lang.Long">
         select * from seckill_products where id = #{id} for update
     </select>
+    <update id="reduceSaledById" >
+        update seckill_products set saled = saled + 1
+        where id = #{id}
+    </update>
 </mapper>

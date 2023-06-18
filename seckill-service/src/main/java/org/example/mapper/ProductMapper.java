@@ -5,4 +5,5 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface ProductMapper extends Mapper<SeckillProducts> {
     SeckillProducts selectByIdForUpdate(Long id);
+    Integer reduceSaledById(Long id);
 }

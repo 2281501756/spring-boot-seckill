@@ -8,6 +8,7 @@ public interface SeckillService {
     BaseResponse<String> simpleSeckill(SeckillReq.SimpleSeckillReq simpleSeckill, SeckillUser user);
     BaseResponse<String> pessimisticSeckill(SeckillReq.SimpleSeckillReq simpleSeckill, SeckillUser user);
     BaseResponse<String> optimisticSeckill(SeckillReq.SimpleSeckillReq simpleSeckill, SeckillUser user) throws Exception;
+    BaseResponse<String> redisSeckill(SeckillReq.SimpleSeckillReq simpleSeckill, SeckillUser user) throws Exception;
 
 
 }

@@ -54,5 +54,14 @@ public class SeckillController {
         }
         return stringBaseResponse;
     }
+    @PostMapping("/redis")
+    public BaseResponse<String> redisSeckill(@RequestBody @Valid SeckillReq.SimpleSeckillReq simpleSeckill) {
+        SeckillUser loginUser = WebUserUtil.getLoginUser();
+        if(loginUser == null) {
+            return BaseResponse.error("登录失败", "秒杀失败");
+        }
+        return seckillService.redisSeckill(simpleSeckill, loginUser);
+
+    }
 
 }
